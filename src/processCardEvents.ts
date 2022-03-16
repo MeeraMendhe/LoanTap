@@ -22,11 +22,13 @@ type CardTransactionMapping = {
 export const processCardEvents = (cardEvents: CardEvent[]): CardTransactionMapping => {
     
   console.log(cardEvents,"Card")
-  // logic
+  // logic in typescript tou have to defined type of each variavle you use
+  //in line 27 obj {key=string:value=Array}={}
   let object: { [CardId: string]: CardEvent[] } = {} // object delclaration what is key and what is array.........
   for (let i = 0; i < cardEvents.length; i++) {
     if (cardEvents[i].type == 'RESERVATION' && cardEvents[i].cardId == cardEvents[i + 1].cardId) {
       if (cardEvents[i + 1].type == 'CANCELLATION' || cardEvents[i + 1].type == 'CONFIRMATION') {
+        //new variable defined using value in obj that defined in line 27
         let transactions: CardEvent[] = []
         transactions.push(cardEvents[i])
         transactions.push(cardEvents[i + 1])
